@@ -14,10 +14,14 @@ public class DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    // Phương thức tìm kiếm ban đầu
-    public List<Doctor> searchDoctorsInitial(String searchTerm) {
-        // Tìm kiếm theo tên HOẶC chuyên khoa.
-        return doctorRepository.findByFullNameContainingIgnoreCaseOrSpecializationContainingIgnoreCase(searchTerm, searchTerm);
+    // --- Phương thức tìm kiếm theo TÊN đầy đủ ---
+    public List<Doctor> searchDoctorsByFullNameInitial(String fullNameTerm) {
+        return doctorRepository.findByFullNameContainingIgnoreCase(fullNameTerm);
+    }
+
+    // --- Phương thức tìm kiếm theo CHUYÊN KHOA ---
+    public List<Doctor> searchDoctorsBySpecializationInitial(String specializationTerm) {
+        return doctorRepository.findBySpecializationContainingIgnoreCase(specializationTerm);
     }
 
     // --- Phương thức Create (Thêm mới) ---

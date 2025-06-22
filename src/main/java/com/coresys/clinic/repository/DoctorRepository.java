@@ -13,6 +13,4 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
     // Phương thức tìm kiếm bác sĩ theo chuyên khoa (không phân biệt hoa thường)
     List<Doctor> findBySpecializationContainingIgnoreCase(String specialization);
 
-    // Phương thức tìm kiếm kết hợp (dùng cho Before Optimization)
-    List<Doctor> findByFullNameContainingIgnoreCaseOrSpecializationContainingIgnoreCase(String fullName, String specialization);
 }

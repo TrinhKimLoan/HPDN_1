@@ -22,11 +22,18 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    // Endpoint API cho tìm kiếm ban đầu
-    // Ví dụ: GET /api/doctors/search/initial?query=nguyen
-    @GetMapping("/search/initial")
-    public List<Doctor> searchDoctorsInitial(@RequestParam String query) {
-        return doctorService.searchDoctorsInitial(query);
+    // --- Endpoints Read FindbyName ---
+    // GET http://localhost:8080/api/doctors/search/initial/by-name?query=Nguyễn
+    @GetMapping("/search/initial/by-name")
+    public List<Doctor> searchDoctorsByFullNameInitial(@RequestParam String query) {
+        return doctorService.searchDoctorsByFullNameInitial(query);
+    }
+
+    // Endpoint Read FindBySpecialization
+    // GET http://localhost:8080/api/doctors/search/initial/by-specialization?query=Nhi
+    @GetMapping("/search/initial/by-specialization")
+    public List<Doctor> searchDoctorsBySpecializationInitial(@RequestParam String query) {
+        return doctorService.searchDoctorsBySpecializationInitial(query);
     }
 
     // --- Endpoint để lấy tất cả bác sĩ ---
