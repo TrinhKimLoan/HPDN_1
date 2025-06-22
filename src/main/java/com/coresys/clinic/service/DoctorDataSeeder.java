@@ -50,7 +50,17 @@ public class DoctorDataSeeder {
                 String phoneNumber = "0" + (random.nextInt(900000000) + 100000000); // 10 chữ số
                 String email = fullName.toLowerCase().replace(" ", "") + i + "@coresys.com";
 
-                Doctor doctor = new Doctor(fullName, experienceYears, dateOfBirth, degree, specialization, title, phoneNumber, email, true);
+                // Thay đổi ở đây: Sử dụng constructor không đối số và setters
+                Doctor doctor = new Doctor(); // <-- Gọi constructor không đối số
+                doctor.setFullName(fullName);
+                doctor.setExperienceYears(experienceYears);
+                doctor.setDateOfBirth(dateOfBirth);
+                doctor.setDegree(degree);
+                doctor.setSpecialization(specialization);
+                doctor.setTitle(title);
+                doctor.setPhoneNumber(phoneNumber);
+                doctor.setEmail(email);
+                doctor.setActive(true); // <-- Sử dụng setter của isActive
                 doctors.add(doctor);
             }
 

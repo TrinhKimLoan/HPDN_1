@@ -4,9 +4,16 @@ package com.coresys.clinic.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-import java.util.Objects; // Cần thiết cho equals/hashCode nếu bạn muốn tự viết
+// Thêm các annotations của Lombok:
+import lombok.Data; // Tự động tạo getters, setters, equals, hashCode, toString
+import lombok.NoArgsConstructor; // Tự động tạo constructor không đối số
+import lombok.AllArgsConstructor; // Tự động tạo constructor có tất cả các đối số
 
+import java.time.LocalDate;
+
+@Data // <-- Thêm annotation này
+@NoArgsConstructor // <-- Thêm annotation này
+@AllArgsConstructor // <-- Thêm annotation này
 @Document(collection = "doctors") // Map to 'doctors' collection in MongoDB
 public class Doctor {
     @Id
@@ -21,109 +28,5 @@ public class Doctor {
     private String phoneNumber;
     private String email;
     private boolean isActive;
-
-    // --- Constructors ---
-
-    // Constructor không đối số (NoArgsConstructor tương đương)
-    public Doctor() {
-    }
-
-    // Constructor có tất cả các đối số (AllArgsConstructor tương đương)
-    public Doctor(String fullName, int experienceYears, LocalDate dateOfBirth, String degree,
-                  String specialization, String title, String phoneNumber, String email, boolean isActive) {
-        this.fullName = fullName;
-        this.experienceYears = experienceYears;
-        this.dateOfBirth = dateOfBirth;
-        this.degree = degree;
-        this.specialization = specialization;
-        this.title = title;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.isActive = isActive;
-    }
-
-    // --- Getters ---
-
-    public String getId() {
-        return id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public int getExperienceYears() {
-        return experienceYears;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public String getDegree() {
-        return degree;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    // --- Setters ---
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setExperienceYears(int experienceYears) {
-        this.experienceYears = experienceYears;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setDegree(String degree) {
-        this.degree = degree;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 
 }
