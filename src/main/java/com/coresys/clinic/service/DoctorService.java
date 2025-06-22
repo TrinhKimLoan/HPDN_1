@@ -14,18 +14,14 @@ public class DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    // Phương thức tìm kiếm ban đầu (dùng cho Before Optimization)
+    // Phương thức tìm kiếm ban đầu
     public List<Doctor> searchDoctorsInitial(String searchTerm) {
         // Tìm kiếm theo tên HOẶC chuyên khoa.
-        // Giả định rằng MongoDB chưa có index trên các trường này.
         return doctorRepository.findByFullNameContainingIgnoreCaseOrSpecializationContainingIgnoreCase(searchTerm, searchTerm);
     }
 
-    // Các phương thức khác (ví dụ: thêm, sửa, xóa bác sĩ) có thể được thêm vào đây
     // --- Phương thức Create (Thêm mới) ---
     public Doctor createDoctor(Doctor doctor) {
-        // Có thể thêm logic kiểm tra trùng lặp (ví dụ: email, phoneNumber) ở đây
-        // Hoặc các logic nghiệp vụ khác trước khi lưu
         return doctorRepository.save(doctor);
     }
 
@@ -49,13 +45,10 @@ public class DoctorService {
             existingDoctor.setPhoneNumber(doctorDetails.getPhoneNumber());
             existingDoctor.setEmail(doctorDetails.getEmail());
             existingDoctor.setActive(doctorDetails.isActive()); // Cập nhật trạng thái
-            // ... cập nhật tất cả các trường bạn muốn cho phép chỉnh sửa
 
             return doctorRepository.save(existingDoctor);
         } else {
-            // Xử lý khi không tìm thấy bác sĩ để cập nhật
-            // Có thể throw exception hoặc trả về null/Optional.empty()
-            return null; // Đơn giản là trả về null trong ví dụ này
+            return null;
         }
     }
 
