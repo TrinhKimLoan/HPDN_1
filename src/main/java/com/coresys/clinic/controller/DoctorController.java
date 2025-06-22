@@ -2,6 +2,7 @@
 package com.coresys.clinic.controller;
 
 import com.coresys.clinic.model.Doctor;
+import com.coresys.clinic.dto.DoctorSearchDto;
 import com.coresys.clinic.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,18 +23,17 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    // --- Endpoints Read FindbyName ---
-    // GET http://localhost:8080/api/doctors/search/initial/by-name?query=Nguyễn
-    @GetMapping("/search/initial/by-name")
-    public List<Doctor> searchDoctorsByFullNameInitial(@RequestParam String query) {
-        return doctorService.searchDoctorsByFullNameInitial(query);
+    // --- Endpoints Read (Optimized Search) ---
+    // GET http://localhost:8080/api/doctors/search/optimized/by-name?query=Trần
+    @GetMapping("/search/optimized/by-name")
+    public List<DoctorSearchDto> searchDoctorsByFullNameOptimized(@RequestParam String query) {
+        return doctorService.searchDoctorsByFullNameOptimized(query);
     }
 
-    // Endpoint Read FindBySpecialization
-    // GET http://localhost:8080/api/doctors/search/initial/by-specialization?query=Nhi
-    @GetMapping("/search/initial/by-specialization")
-    public List<Doctor> searchDoctorsBySpecializationInitial(@RequestParam String query) {
-        return doctorService.searchDoctorsBySpecializationInitial(query);
+    // GET http://localhost:8080/api/doctors/search/optimized/by-specialization?query=Da liễu
+    @GetMapping("/search/optimized/by-specialization")
+    public List<DoctorSearchDto> searchDoctorsBySpecializationOptimized(@RequestParam String query) {
+        return doctorService.searchDoctorsBySpecializationOptimized(query);
     }
 
     // --- Endpoint để lấy tất cả bác sĩ ---

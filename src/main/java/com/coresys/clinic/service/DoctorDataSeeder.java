@@ -38,7 +38,7 @@ public class DoctorDataSeeder {
             String[] degrees = {"Thạc sĩ Y học", "Bác sĩ Chuyên khoa I", "Bác sĩ Chuyên khoa II", "Tiến sĩ Y học"};
             String[] titles = {"Bác sĩ", "Bác sĩ chính", "Trưởng khoa", "Phó khoa"};
 
-            for (int i = 0; i < 50; i++) { // Thêm 50 bác sĩ
+            for (int i = 0; i < 150; i++) { // Thêm 150 bác sĩ
                 String fullName = firstNames[random.nextInt(firstNames.length)] + " " +
                         middleNames[random.nextInt(middleNames.length)] + " " +
                         lastNames[random.nextInt(lastNames.length)];

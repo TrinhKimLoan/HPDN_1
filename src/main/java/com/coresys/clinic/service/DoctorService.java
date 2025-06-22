@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional; // Import này cần cho findById
+import com.coresys.clinic.dto.DoctorSearchDto;
 
 @Service
 public class DoctorService {
@@ -14,14 +15,16 @@ public class DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    // --- Phương thức tìm kiếm theo TÊN đầy đủ ---
-    public List<Doctor> searchDoctorsByFullNameInitial(String fullNameTerm) {
-        return doctorRepository.findByFullNameContainingIgnoreCase(fullNameTerm);
+    // --- Phương thức tìm kiếm theo TÊN đầy đủ (Optimized Search - dùng Index & Projection) ---
+    public List<DoctorSearchDto> searchDoctorsByFullNameOptimized(String fullNameTerm) {
+        // Sẽ cần một phương thức mới trong Repository
+        return doctorRepository.searchDoctorsByFullNameOptimized(fullNameTerm);
     }
 
-    // --- Phương thức tìm kiếm theo CHUYÊN KHOA ---
-    public List<Doctor> searchDoctorsBySpecializationInitial(String specializationTerm) {
-        return doctorRepository.findBySpecializationContainingIgnoreCase(specializationTerm);
+    // --- Phương thức tìm kiếm theo CHUYÊN KHOA (Optimized Search - dùng Index & Projection) ---
+    public List<DoctorSearchDto> searchDoctorsBySpecializationOptimized(String specializationTerm) {
+        // Sẽ cần một phương thức mới trong Repository
+        return doctorRepository.searchDoctorsBySpecializationOptimized(specializationTerm);
     }
 
     // --- Phương thức Create (Thêm mới) ---
